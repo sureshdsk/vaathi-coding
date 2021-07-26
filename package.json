@@ -13,12 +13,20 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-query": "^3.19.1",
     "react-remark": "^2.0.3"
   },
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+    "mock-api": "node ./mock-api/app.js",
+    "dev-all": "run-p dev mock-api"
+  },
+  "devDependencies": {
+    "connect-api-mocker": "^1.10.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "npm-run-all": "^4.1.5"
   }
 }

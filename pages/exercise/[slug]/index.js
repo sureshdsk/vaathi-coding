@@ -21,60 +21,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Index() {
+function Exercise({exercise}) {
+  console.log('Exercise::')
+  console.log(exercise)
   const router = useRouter()
-  const { slug } = router.query
+  // const { slug } = router.query
   const classes = useStyles();
   const editorRef = useRef(null);
-  const [markdownSource, setMarkdownSource] = useState('');
   const [codeResult, setCodeResult] = React.useState('Output will be displayed here')
   const [outputStatus, setOutputStatus] = React.useState(null);
 
-  const [exercise, setExercise] = React.useState({})
-  
-
   useEffect(() => {
-    let ex = {id: 'hello-world',
-    desc: `
-# Given an array A[] and a number x, check for pair in A[] with sum as x 
-Write a program that, given an array A[] of n numbers and another number x, determines whether or not there exist two elements in S whose sum is exactly x. 
-
-## Examples
-\`\`\`
-Input: arr[] = {0, -1, 2, -3, 1}
-  sum = -2
-Output: -3, 1
-If we calculate the sum of the output,
-1 + (-3) = -2
-
-Input: arr[] = {1, -2, 1, 0, 5}
-  sum = 0
-Output: -1
-No valid pair exists..
-\`\`\`
-`,
-placeholder: `class Solution:
-    
-    def main(self, inputs):
-        #your code here
-    `,
-test_run_code: `
-s = Solution()
-s.main([[0, -1, 2, -3, 1], -2])
-`,
-expectedOutput: '-3,1',
-}
-    setMarkdownSource(ex.desc);
-    setExercise(ex);
 
     (async () => {
       await loadPyodide({
         indexURL : "https://cdn.jsdelivr.net/pyodide/v0.17.0/full/"
       });
-      console.log(pyodide.runPython(`
-          import sys
-          print(sys.version)
-      `));
+      // console.log(pyodide.runPython(`
+      //     import sys
+      //     print(sys.version)
+      // `));
     })()
       
     
@@ -134,8 +100,6 @@ expectedOutput: '-3,1',
     let userOutput =  pyodide.runPython("sys.stdout.getvalue()");
     setCodeResult(userOutput)
     setOutputStatus(userOutput.trim() == exercise.expectedOutput.trim())
-    console.log(userOutput)
-    console.log(exercise.expectedOutput)
   }
 
   return (
@@ -146,11 +110,9 @@ expectedOutput: '-3,1',
         <Grid item xs={6}>
           <Grid container spacing={6}>
           <Grid item xs={12}>
-            <Remark>{markdownSource}</Remark>
+            <Remark>{exercise.desc}</Remark>
           </Grid>
-          </Grid>
-          {/* <textarea onChange={({ currentTarget }) => setMarkdownSource(currentTarget.value)} /> */}
-          
+          </Grid> 
         </Grid>
         <Grid item xs={6}>
           <Editor
@@ -184,3 +146,11 @@ expectedOutput: '-3,1',
     </PageTemplate>
   );
 }
+
+Exercise.getInitialProps = async (ctx) => {
+  const res = await fetch(`http://localhost:9000/api/exercise/${ctx.query.slug}`)
+  const exercise = await res.json()
+  return { exercise: exercise.data }
+}
+
+export default Exercise;
