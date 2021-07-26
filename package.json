@@ -1,14 +1,19 @@
 {
-  "name": "nextjs",
-  "version": "4.0.0",
+  "name": "vaathi-coding",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "latest",
-    "clsx": "latest",
+    "@clerk/clerk-react": "^1.14.0",
+    "@material-ui/core": "^4.12.1",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@monaco-editor/react": "^4.2.1",
+    "clsx": "^1.1.1",
     "next": "latest",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-remark": "^2.0.3"
   },
   "scripts": {
     "dev": "next",
