@@ -5,7 +5,7 @@ slug: 'hello-world',
 title: 'Hello Python',
 desc: `
 # Hello world 
-write a program that prints Hello Python!
+write a program that prints Hello Python!!!
 `,
 placeholder: `class Solution:
     

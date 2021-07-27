@@ -23,12 +23,16 @@ const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
  *  "/foo/bar"       for pages/foo/bar.js
  *  "/foo/[...bar]"  for pages/foo/[...bar].js
  */
-const publicPages = [];
+const publicPages = [
+  "/",
+  "/exercise/hello-world"
+];
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
 
   const router = useRouter();
+  console.log(router);
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -54,7 +58,7 @@ export default function MyApp(props) {
           frontendApi={clerkFrontendApi}
           navigate={(to) => router.push(to)}
         >
-        {publicPages.includes(router.pathname) ? (
+        {publicPages.includes(router.asPath) ? (
             <Component {...pageProps} />
           ) : (
             <>

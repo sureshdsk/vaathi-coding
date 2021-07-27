@@ -51,10 +51,11 @@ export default function CodeConsole({codeResult, outputStatus}) {
            
         </Tabs>
         <TabPanel style={{minHeight: '120px', overflow: 'scroll'}} value={value} index={0}>
+          <div>
             <pre>
                 {codeResult}
             </pre>
-             
+          </div>
             
 
         </TabPanel>
