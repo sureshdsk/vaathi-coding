@@ -12,7 +12,6 @@ import Grid from '@material-ui/core/Grid';
 
 
 function HomePage({exercises}) {
-  const { firstName } = useUser();
   const bgcolors = [
     'primary.main',
     'secondary.main',
