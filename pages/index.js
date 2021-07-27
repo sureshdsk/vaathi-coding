@@ -4,7 +4,8 @@ import Link from "../components/Link";
 import PageTemplate from "../components/Page";
 import Grid from "@material-ui/core/Grid";
 
-const BACKEND_API_HOST = process.env.NEXT_PUBLIC_VERCEL_URL | process.env.NEXT_BACKEND_API_HOST;
+const BACKEND_API_HOST =
+  process.env.NEXT_PUBLIC_VERCEL_URL | process.env.NEXT_BACKEND_API_HOST;
 
 function HomePage({ exercises }) {
   const bgcolors = [
