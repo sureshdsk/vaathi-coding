@@ -1,9 +1,9 @@
 // prettier-ignore
 const exercises = [
   {
-    id: "hello-world",
-    slug: "hello-world",
-    title: "Hello Python",
+    id: 'hello-world',
+    slug: 'hello-world',
+    title: 'Hello Python',
     desc: `
 # Hello world 
 write a program that prints Hello Python!!!
@@ -18,12 +18,12 @@ class Solution:
 s = Solution()
 s.main()
 `,
-    expectedOutput: "Hello Python!!!",
+    expectedOutput: 'Hello Python!!!'
   },
   {
-    id: "reverse-string",
-    slug: "reverse-string",
-    title: "Reverse a string",
+    id: 'reverse-string',
+    slug: 'reverse-string',
+    title: 'Reverse a string',
     desc: `
 # Reverse string
 write a program that reverses given string
@@ -37,9 +37,9 @@ class Solution:
 s = Solution()
 s.main("Hello Python!!!")
 `,
-    expectedOutput: "!!!nohtyP olleH",
-  },
-];
+    expectedOutput: '!!!nohtyP olleH'
+  }
+]
 
 module.exports.getExercises = () => {
   return exercises;
