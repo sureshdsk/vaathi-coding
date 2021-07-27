@@ -1,26 +1,25 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import ProTip from '../components/ProTip';
-import Link from '../components/Link';
-import Copyright from '../components/Copyright';
+import React from "react";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import ProTip from "../components/ProTip";
+import Link from "../components/Link";
+import Copyright from "../components/Copyright";
 import { UserButton, useUser } from "@clerk/clerk-react";
-import PageTemplate from '../components/Page';
-import Grid from '@material-ui/core/Grid';
+import PageTemplate from "../components/Page";
+import Grid from "@material-ui/core/Grid";
 
-
-function HomePage({exercises}) {
+function HomePage({ exercises }) {
   const bgcolors = [
-    'primary.main',
-    'secondary.main',
-    'error.main',
-    'warning.main',
-    'info.main',
-    'success.main',
-    'text.primary'
-  ]
+    "primary.main",
+    "secondary.main",
+    "error.main",
+    "warning.main",
+    "info.main",
+    "success.main",
+    "text.primary",
+  ];
   // const courses = [
   //   {title: "Hello Python", id: 'hello-python'},
   //   {title: "Arithmetic operations", id: 'hello-python'},
@@ -37,26 +36,30 @@ function HomePage({exercises}) {
   return (
     <PageTemplate>
       <Grid container spacing={1}>
-        {exercises.map((exercise) =>
-          
+        {exercises.map((exercise) => (
           <Grid key={exercise.id} item xs={12} sm={4}>
-            <Box  bgcolor="info.main" color="info.contrastText" p={5}>
-            <h2><Link style={{color:"black"}} href={`/exercise/${exercise.id}`}>{exercise.title}</Link></h2>
+            <Box bgcolor="info.main" color="info.contrastText" p={5}>
+              <h2>
+                <Link
+                  style={{ color: "black" }}
+                  href={`/exercise/${exercise.id}`}
+                >
+                  {exercise.title}
+                </Link>
+              </h2>
             </Box>
           </Grid>
-          
-          
-        )}
+        ))}
       </Grid>
-  </PageTemplate>
+    </PageTemplate>
   );
 }
 
 HomePage.getInitialProps = async (ctx) => {
-  const res = await fetch('http://localhost:9000/api/exercise')
-  const response = await res.json()
-  console.log(response)
-  return { exercises: response.data }
-}
+  const res = await fetch("http://localhost:9000/api/exercise");
+  const response = await res.json();
+  console.log(response);
+  return { exercises: response.data };
+};
 
 export default HomePage;
