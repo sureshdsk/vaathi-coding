@@ -1,6 +1,5 @@
-const {getExercises} = require('../data');
+const { getExercises } = require("../data");
 
-module.exports = (req, res) =>{
-    
-    res.status(200).json({data: getExercises()});
-}
+module.exports = (req, res) => {
+  res.status(200).json({ data: getExercises() });
+};
