@@ -10,6 +10,8 @@ import { UserButton, useUser } from "@clerk/clerk-react";
 import PageTemplate from "../components/Page";
 import Grid from "@material-ui/core/Grid";
 
+const BACKEND_API_HOST = process.env.NEXT_BACKEND_API_HOST;
+
 function HomePage({ exercises }) {
   const bgcolors = [
     "primary.main",
@@ -56,7 +58,7 @@ function HomePage({ exercises }) {
 }
 
 HomePage.getInitialProps = async (ctx) => {
-  const res = await fetch("http://localhost:9000/api/exercise");
+  const res = await fetch(`${BACKEND_API_HOST}/api/exercise`);
   const response = await res.json();
   console.log(response);
   return { exercises: response.data };

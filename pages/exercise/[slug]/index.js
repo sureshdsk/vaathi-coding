@@ -8,6 +8,8 @@ import Grid from "@material-ui/core/Grid";
 import PageTemplate from "../../../components/Page";
 import { useRouter } from "next/router";
 
+const BACKEND_API_HOST = process.env.NEXT_BACKEND_API_HOST;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -140,7 +142,7 @@ function Exercise({ exercise }) {
 
 Exercise.getInitialProps = async (ctx) => {
   const res = await fetch(
-    `http://localhost:9000/api/exercise/${ctx.query.slug}`
+    `${BACKEND_API_HOST}/api/exercise/${ctx.query.slug}`
   );
   const exercise = await res.json();
   return { exercise: exercise.data };

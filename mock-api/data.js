@@ -1,3 +1,4 @@
+// prettier-ignore
 const exercises = [
   {
     id: "hello-world",
@@ -7,7 +8,8 @@ const exercises = [
 # Hello world 
 write a program that prints Hello Python!!!
 `,
-    placeholder: `class Solution:
+    placeholder: `
+class Solution:
     
     def main(self):
         #your code here
@@ -26,8 +28,8 @@ s.main()
 # Reverse string
 write a program that reverses given string
 `,
-    placeholder: `class Solution:
-    
+    placeholder: `
+class Solution:
     def main(self, user_input:str):
         #your code here
     `,
