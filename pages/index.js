@@ -1,16 +1,10 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import ProTip from "../components/ProTip";
 import Link from "../components/Link";
-import Copyright from "../components/Copyright";
-import { UserButton, useUser } from "@clerk/clerk-react";
 import PageTemplate from "../components/Page";
 import Grid from "@material-ui/core/Grid";
 
-const BACKEND_API_HOST = process.env.NEXT_BACKEND_API_HOST;
+const BACKEND_API_HOST = process.env.NEXT_PUBLIC_VERCEL_URL | process.env.NEXT_BACKEND_API_HOST;
 
 function HomePage({ exercises }) {
   const bgcolors = [
