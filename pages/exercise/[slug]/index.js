@@ -141,9 +141,7 @@ function Exercise({ exercise }) {
 }
 
 Exercise.getInitialProps = async (ctx) => {
-  const res = await fetch(
-    `${BACKEND_API_HOST}/api/exercise/${ctx.query.slug}`
-  );
+  const res = await fetch(`${BACKEND_API_HOST}/api/exercise/${ctx.query.slug}`);
   const exercise = await res.json();
   return { exercise: exercise.data };
 };
