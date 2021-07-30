@@ -7,10 +7,9 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import PageTemplate from "../../../components/Page";
 import { useRouter } from "next/router";
-import {fetcher} from "../../../utils"
-import useSWR from "swr"
-import CircularProgress from '@material-ui/core/CircularProgress';
-
+import { fetcher } from "../../../utils";
+import useSWR from "swr";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Exercise() {
   const router = useRouter();
-  const { slug } = router.query
+  const { slug } = router.query;
   const classes = useStyles();
   const editorRef = useRef(null);
-  const { data:exercise, error } = useSWR(`/api/exercise/${slug}`, fetcher)
+  const { data: exercise, error } = useSWR(`/api/exercise/${slug}`, fetcher);
 
   const [codeResult, setCodeResult] = React.useState(
     "Output will be displayed here"
@@ -99,10 +98,9 @@ function Exercise() {
     setCodeResult(userOutput);
     setOutputStatus(userOutput.trim() == exercise.data.expectedOutput.trim());
   }
-  if (error) return <div>failed to load</div>
-  if (!exercise) return <CircularProgress />
+  if (error) return <div>failed to load</div>;
+  if (!exercise) return <CircularProgress />;
   return (
-    
     <PageTemplate>
       <div className={classes.root}>
         <Grid container spacing={6}>

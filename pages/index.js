@@ -1,16 +1,14 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Box from "@material-ui/core/Box";
 import Link from "../components/Link";
 import PageTemplate from "../components/Page";
 import Grid from "@material-ui/core/Grid";
-import useSWR from "swr"
-import {fetcher} from "../utils"
-import CircularProgress from '@material-ui/core/CircularProgress';
-
+import useSWR from "swr";
+import { fetcher } from "../utils";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function HomePage() {
-  
-  const { data:excercises, error } = useSWR('/api/exercise', fetcher)
+  const { data: excercises, error } = useSWR("/api/exercise", fetcher);
 
   const bgcolors = [
     "primary.main",
@@ -21,14 +19,19 @@ function HomePage() {
     "success.main",
     "text.primary",
   ];
-  if (error) return <div>failed to load</div>
-  if (!excercises) return <CircularProgress />
+  if (error) return <div>failed to load</div>;
+  if (!excercises) return <CircularProgress />;
   return (
     <PageTemplate>
       <Grid container spacing={1}>
         {excercises.data.map((exercise) => (
           <Grid key={exercise.id} item xs={12} sm={4}>
-            <Box bgcolor={`${exercise.theme}.main`} color={`${exercise.theme}.contrastText`} m={4} p={5}>
+            <Box
+              bgcolor={`${exercise.theme}.main`}
+              color={`${exercise.theme}.contrastText`}
+              m={4}
+              p={5}
+            >
               <h2>
                 <Link
                   style={{ color: "black" }}
