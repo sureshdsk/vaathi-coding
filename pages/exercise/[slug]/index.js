@@ -7,7 +7,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import PageTemplate from "../../../components/Page";
 import { useRouter } from "next/router";
-import { fetcher } from "../../../utils";
+import fetcher from "../../../utils";
 import useSWR from "swr";
 import CircularProgress from "@material-ui/core/CircularProgress";
 

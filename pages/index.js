@@ -4,7 +4,7 @@ import Link from "../components/Link";
 import PageTemplate from "../components/Page";
 import Grid from "@material-ui/core/Grid";
 import useSWR from "swr";
-import { fetcher } from "../utils";
+import fetcher from "../utils";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 function HomePage() {
