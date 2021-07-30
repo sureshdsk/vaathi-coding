@@ -7,8 +7,9 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import PageTemplate from "../../../components/Page";
 import { useRouter } from "next/router";
-
-const BACKEND_API_HOST = process.env.NEXT_BACKEND_API_HOST;
+import { fetcher } from "../../../utils";
+import useSWR from "swr";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Exercise({ exercise }) {
-  console.log("Exercise::");
-  console.log(exercise);
+function Exercise() {
   const router = useRouter();
-  // const { slug } = router.query
+  const { slug } = router.query;
   const classes = useStyles();
   const editorRef = useRef(null);
+  const { data: exercise, error } = useSWR(`/api/exercise/${slug}`, fetcher);
+
   const [codeResult, setCodeResult] = React.useState(
     "Output will be displayed here"
   );
@@ -91,13 +92,14 @@ function Exercise({ exercise }) {
     sys.stdout = io.StringIO()
 `);
     await pyodide.runPythonAsync(editorRef.current.getValue());
-    await pyodide.runPythonAsync(exercise.test_run_code);
+    await pyodide.runPythonAsync(exercise.data.test_run_code);
     // let output = pyodide.runPython(editorRef.current.getValue())
     const userOutput = pyodide.runPython("sys.stdout.getvalue()");
     setCodeResult(userOutput);
-    setOutputStatus(userOutput.trim() == exercise.expectedOutput.trim());
+    setOutputStatus(userOutput.trim() == exercise.data.expectedOutput.trim());
   }
-
+  if (error) return <div>failed to load</div>;
+  if (!exercise) return <CircularProgress />;
   return (
     <PageTemplate>
       <div className={classes.root}>
@@ -105,7 +107,7 @@ function Exercise({ exercise }) {
           <Grid item xs={6}>
             <Grid container spacing={6}>
               <Grid item xs={12}>
-                <Remark>{exercise.desc}</Remark>
+                <Remark>{exercise.data.desc}</Remark>
               </Grid>
             </Grid>
           </Grid>
@@ -113,7 +115,7 @@ function Exercise({ exercise }) {
             <Editor
               height="55vh"
               defaultLanguage="python"
-              defaultValue={exercise.placeholder}
+              defaultValue={exercise.data.placeholder}
               onChange={handleEditorChange}
               onMount={handleEditorDidMount}
               beforeMount={handleEditorWillMount}
@@ -140,10 +142,10 @@ function Exercise({ exercise }) {
   );
 }
 
-Exercise.getInitialProps = async (ctx) => {
-  const res = await fetch(`${BACKEND_API_HOST}/api/exercise/${ctx.query.slug}`);
-  const exercise = await res.json();
-  return { exercise: exercise.data };
-};
+// Exercise.getInitialProps = async (ctx) => {
+//   const res = await fetch(`${BACKEND_API_HOST}/api/exercise/${ctx.query.slug}`);
+//   const exercise = await res.json();
+//   return { exercise: exercise.data };
+// };
 
 export default Exercise;

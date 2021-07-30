@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
 }));
 
 export default function PageTemplate({ children }) {
@@ -26,15 +29,26 @@ export default function PageTemplate({ children }) {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
-              Vaathi
-            </Typography>
-            <Button variant="outlined" color="inherit">
               <Link color="inherit" href="/">
-                Home
+                Vaathi Coding
+              </Link>
+            </Typography>
+            <Button
+              variant="outlined"
+              className={classes.menuButton}
+              color="inherit"
+            >
+              <Link color="inherit" href="/">
+                View All Exercises
               </Link>
             </Button>
-            <Button variant="outlined" color="inherit" href="/code-editor">
-              <Link color="inherit" href="/code-editor">
+            <Button
+              variant="outlined"
+              className={classes.menuButton}
+              color="inherit"
+              href="/code-editor"
+            >
+              <Link color="inherit" href="/about">
                 About
               </Link>
             </Button>
