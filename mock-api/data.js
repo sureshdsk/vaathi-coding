@@ -3,6 +3,7 @@ const exercises = [
   {
     id: 'hello-world',
     slug: 'hello-world',
+    theme: 'info',
     title: 'Hello Python',
     desc: `
 # Hello world 
@@ -23,6 +24,7 @@ s.main()
   {
     id: 'reverse-string',
     slug: 'reverse-string',
+    theme: 'secondary',
     title: 'Reverse a string',
     desc: `
 # Reverse string
