@@ -8,7 +8,6 @@ import {fetcher} from "../utils"
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-
 function HomePage() {
   
   const { data:excercises, error } = useSWR('/api/exercise', fetcher)
