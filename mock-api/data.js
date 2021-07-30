@@ -127,7 +127,7 @@ class Solution:
 s = Solution()
 s.main("John")
 `,
-    expectedOutput: `Hello, John!`
+    expectedOutput: 'Hello, John!'
   },
   {
     id: 'string-concatenation-2',
@@ -159,7 +159,7 @@ class Solution:
 s = Solution()
 s.main("John")
 `,
-    expectedOutput: `Hello, John!`
+    expectedOutput: 'Hello, John!'
   },
   {
     id: 'dictionary-1',
@@ -196,7 +196,7 @@ s.main({
   'skills': ['Python', 'Javascript', 'Golang']
 })
 `,
-    expectedOutput: `John knows Python, Javascript, Golang`
+    expectedOutput: 'John knows Python, Javascript, Golang'
   }
 ]
 
