@@ -23,7 +23,7 @@ const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
  *  "/foo/bar"       for pages/foo/bar.js
  *  "/foo/[...bar]"  for pages/foo/[...bar].js
  */
-const publicPages = ["/", "/exercise/hello-world"];
+const publicPages = ["/", "/about", "/exercise/hello-world"];
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;

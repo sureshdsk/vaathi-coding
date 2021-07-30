@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Link from "../components/Link";
-import { UserButton } from "@clerk/clerk-react";
+import { UserButton, useClerk, SignedIn, SignedOut } from "@clerk/clerk-react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -19,6 +19,15 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
 }));
+
+const SignInButton = () => {
+  const { openSignIn } = useClerk();
+  return (
+    <Button onClick={() => openSignIn({})} variant="contained" color="default">
+      SignIn
+    </Button>
+  );
+};
 
 export default function PageTemplate({ children }) {
   const classes = useStyles();
@@ -52,8 +61,12 @@ export default function PageTemplate({ children }) {
                 About
               </Link>
             </Button>
-
-            <UserButton />
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
           </Toolbar>
         </AppBar>
 
