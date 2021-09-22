@@ -86,17 +86,22 @@ function Exercise() {
   }
   async function showValue() {
     // alert(editorRef.current.getValue());
-    await pyodide.runPythonAsync(`
-    import sys
-    import io
-    sys.stdout = io.StringIO()
-`);
-    await pyodide.runPythonAsync(editorRef.current.getValue());
-    await pyodide.runPythonAsync(exercise.data.test_run_code);
-    // let output = pyodide.runPython(editorRef.current.getValue())
-    const userOutput = pyodide.runPython("sys.stdout.getvalue()");
-    setCodeResult(userOutput);
-    setOutputStatus(userOutput.trim() == exercise.data.expectedOutput.trim());
+    try {
+      await pyodide.runPythonAsync(`
+      import sys
+      import io
+      sys.stdout = io.StringIO()
+  `);
+      await pyodide.runPythonAsync(editorRef.current.getValue());
+      await pyodide.runPythonAsync(exercise.data.test_run_code);
+      const userOutput = await pyodide.runPythonAsync("sys.stdout.getvalue()");
+      setCodeResult(userOutput);
+      setOutputStatus(userOutput.trim() == exercise.data.expectedOutput.trim());
+    }catch(err){
+      setCodeResult("Error in evaluating code ");
+      setOutputStatus(false)
+    }
+    
   }
   if (error) return <div>failed to load</div>;
   if (!exercise) return <CircularProgress />;
