@@ -97,11 +97,10 @@ function Exercise() {
       const userOutput = await pyodide.runPythonAsync("sys.stdout.getvalue()");
       setCodeResult(userOutput);
       setOutputStatus(userOutput.trim() == exercise.data.expectedOutput.trim());
-    }catch(err){
+    } catch (err) {
       setCodeResult("Error in evaluating code ");
-      setOutputStatus(false)
+      setOutputStatus(false);
     }
-    
   }
   if (error) return <div>failed to load</div>;
   if (!exercise) return <CircularProgress />;
