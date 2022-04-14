@@ -24,9 +24,9 @@ const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
  *  "/foo/[...bar]"  for pages/foo/[...bar].js
  */
 const publicPages = [
-  "/", 
-  "/about", 
-  "/exercise/hello-world", 
+  "/",
+  "/about",
+  "/exercise/hello-world",
   "/exercise/reverse-string",
   "/exercise/for-loop-1",
   "/exercise/string-concatenation-1",
